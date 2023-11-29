@@ -41,6 +41,7 @@ public class RestaurantConverter {
                 .closeTime(request.getCloseTime())
                 .restaurantType(restaurantType)
                 .restaurantLocationList(new ArrayList<>())
+                .missionList(new ArrayList<>())
                 .build();
     }
 }
