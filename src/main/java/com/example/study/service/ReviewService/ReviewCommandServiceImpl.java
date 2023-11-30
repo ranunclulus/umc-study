@@ -2,13 +2,11 @@ package com.example.study.service.ReviewService;
 
 import com.example.study.converter.ReviewConverter;
 import com.example.study.domain.Member;
-import com.example.study.domain.Mission;
 import com.example.study.domain.Restaurant;
 import com.example.study.domain.Review;
 import com.example.study.repository.MemberRepository;
 import com.example.study.repository.RestaurantRepository;
 import com.example.study.repository.ReviewRepository;
-import com.example.study.web.dto.MissionRequestDTO;
 import com.example.study.web.dto.ReviewRequestDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

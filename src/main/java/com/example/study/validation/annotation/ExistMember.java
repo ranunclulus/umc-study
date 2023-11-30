@@ -1,7 +1,6 @@
 package com.example.study.validation.annotation;
 
 import com.example.study.validation.validator.MemberExistValidator;
-import com.example.study.validation.validator.RestaurantsExistValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
