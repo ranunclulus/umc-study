@@ -42,6 +42,7 @@ public class RestaurantConverter {
                 .restaurantType(restaurantType)
                 .restaurantLocationList(new ArrayList<>())
                 .missionList(new ArrayList<>())
+                .reviewList(new ArrayList<>())
                 .build();
     }
 }

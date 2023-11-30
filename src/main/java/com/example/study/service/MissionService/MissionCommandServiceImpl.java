@@ -16,7 +16,7 @@ public class MissionCommandServiceImpl implements MissionCommandService {
     private final RestaurantRepository restaurantRepository;
     @Override
     public Mission JoinMission(MissionRequestDTO.JoinDTO request) {
-        Restaurant restaurant = restaurantRepository.findByTitle(request.getRestaurantName());
+        Restaurant restaurant = restaurantRepository.findByTitle(request.getRestaurantName()).get();
         Mission newMission = MissionConverter.toMission(request, restaurant);
         restaurant.getMissionList().add(newMission);
         return missionRepository.save(newMission);
