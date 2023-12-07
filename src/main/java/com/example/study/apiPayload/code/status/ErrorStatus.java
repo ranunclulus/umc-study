@@ -22,6 +22,7 @@ public enum ErrorStatus implements BaseErrorCode {
     RESTAURANT_TYPE_NOT_FOUND(HttpStatus.BAD_REQUEST, "RESTAURANT4001", "레스토랑 타입이 존재하지 않습니다"),
 
     MISSION_STATUS_NOT_FOUND(HttpStatus.BAD_REQUEST, "MISSION4001", "미션 상태가 존재하지 않습니다"),
+    MEMBER_MISSION_ALREADY_EXIST(HttpStatus.BAD_REQUEST, "MEMBERMISSION4001", "이미 도전 중인 미션입니다"),
 
     // For test
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "테스트 에러입니다.");
