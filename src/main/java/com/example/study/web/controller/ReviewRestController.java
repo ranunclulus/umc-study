@@ -2,12 +2,15 @@ package com.example.study.web.controller;
 
 import com.example.study.apiPayload.ApiResponse;
 import com.example.study.converter.MyReviewConverter;
+import com.example.study.converter.RestaurantReviewConverter;
 import com.example.study.converter.ReviewConverter;
 import com.example.study.domain.Review;
 import com.example.study.service.ReviewService.ReviewCommandService;
 import com.example.study.service.ReviewService.ReviewQueryService;
 import com.example.study.validation.annotation.ExistMember;
+import com.example.study.validation.annotation.ExistRestaurants;
 import com.example.study.web.dto.MyReviewResponseDTO;
+import com.example.study.web.dto.RestaurantReviewResponseDTO;
 import com.example.study.web.dto.ReviewRequestDTO;
 import com.example.study.web.dto.ReviewResponseDTO;
 import io.swagger.annotations.ApiResponses;
@@ -36,15 +39,19 @@ public class ReviewRestController {
     }
 
 
-    @GetMapping("/{memberId}/reviews")
-    @Operation(summary = "특정 가게의 리뷰 목록 조회 API",description = "특정 가게의 리뷰들의 목록을 조회하는 API이며, 페이징을 포함합니다. query String 으로 page 번호를 주세요")
-    @Parameters({
-            @Parameter(name = "memㅠerId", description = "사용자의 아이디, path variable 입니다!")
-    })
+    @GetMapping("memver/{memberId}")
     public ApiResponse<MyReviewResponseDTO.ReviewPreViewListDTO> getReviewList(
             @ExistMember @PathVariable(name = "memberId") Long memberId,
             @RequestParam(name = "page") Integer page){
         Page<Review> reviews = reviewQueryService.getReviewList(memberId, page);
         return ApiResponse.onSuccess(MyReviewConverter.reviewPreViewListDTO(reviews));
+    }
+
+    @GetMapping("restaurant/{restaurantId}")
+    public ApiResponse<RestaurantReviewResponseDTO.ReviewPreViewListDTO> getRestaurantReviewList(
+            @ExistRestaurants @PathVariable(name = "restaurantId") Long restaurantId,
+            @RequestParam(name = "page") Integer page){
+        Page<Review> reviews = reviewQueryService.getRestaurantReviewList(restaurantId, page);
+        return ApiResponse.onSuccess(RestaurantReviewConverter.reviewPreViewListDTO(reviews));
     }
 }
