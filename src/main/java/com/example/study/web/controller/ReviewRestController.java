@@ -7,6 +7,7 @@ import com.example.study.converter.ReviewConverter;
 import com.example.study.domain.Review;
 import com.example.study.service.ReviewService.ReviewCommandService;
 import com.example.study.service.ReviewService.ReviewQueryService;
+import com.example.study.validation.annotation.CheckPage;
 import com.example.study.validation.annotation.ExistMember;
 import com.example.study.validation.annotation.ExistRestaurants;
 import com.example.study.web.dto.MyReviewResponseDTO;
@@ -42,7 +43,7 @@ public class ReviewRestController {
     @GetMapping("memver/{memberId}")
     public ApiResponse<MyReviewResponseDTO.ReviewPreViewListDTO> getReviewList(
             @ExistMember @PathVariable(name = "memberId") Long memberId,
-            @RequestParam(name = "page") Integer page){
+            @CheckPage @RequestParam(name = "page") Integer page){
         Page<Review> reviews = reviewQueryService.getReviewList(memberId, page);
         return ApiResponse.onSuccess(MyReviewConverter.reviewPreViewListDTO(reviews));
     }
@@ -50,7 +51,7 @@ public class ReviewRestController {
     @GetMapping("restaurant/{restaurantId}")
     public ApiResponse<RestaurantReviewResponseDTO.ReviewPreViewListDTO> getRestaurantReviewList(
             @ExistRestaurants @PathVariable(name = "restaurantId") Long restaurantId,
-            @RequestParam(name = "page") Integer page){
+            @CheckPage  @RequestParam(name = "page") Integer page){
         Page<Review> reviews = reviewQueryService.getRestaurantReviewList(restaurantId, page);
         return ApiResponse.onSuccess(RestaurantReviewConverter.reviewPreViewListDTO(reviews));
     }
